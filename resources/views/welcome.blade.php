@@ -18,6 +18,28 @@
 
 </head>
 <body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">GameTrack</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Create">Create</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
     <div class="title" style="text-align: center;">
         <h1>Welcome to GameTrack!!!</h1>
         <h2>The website that allows you to list all the video games you have played and rate them!!</h2>
@@ -35,7 +57,10 @@
             <img src="{{asset('images/Fortnite.jpg')}}" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="{{asset('images/Genshin.jpg')}}" class="d-block w-100" alt="...">
+            <img src="{{asset('images/048696200_1600396266-League-of-Legends-Wild-Rift.jpg')}}" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="{{asset('images/wp7487062-genshin-impact-wallpapers.jpg')}}" class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -49,7 +74,35 @@
       </div>
     </div>
 
-    <hr>
+    <hr class="colored-hr">
+
+    <div class="m-5">
+        <a href = "{{route('create')}}">
+        <button class="btn btn-success">Create</button>
+        </a>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center gap-5">
+        @foreach ($VideoGames as $index => $VideoGame)
+            <div class="card" style="width: 18rem;">
+                {{-- <img src="{{asset('images/pngwing.com.png')}}" class="card-img-top" alt="..."> --}}
+                <div class="card-body">
+                    <h5 class="card-title">Game Title: {{$VideoGame->GameTitle}} </h5>
+                    <p class="card-text">Developer: {{$VideoGame->Developer}}</p>
+                    <p class="card-text">Release Date: {{$VideoGame->ReleaseDate}}</p>
+                    <p class="card-text">Played since: {{$VideoGame->PlayedSince}}</p>
+                    <p class="card-text">Platform: {{$VideoGame->category->Platform}}</p>
+                    <p class="card-text">Genre: {{$VideoGame->Genre}}</p>
+                    <p class="card-text">Status: {{$VideoGame->Status}}</p>
+                    <a href="" class="btn btn-success">Edit</a>
+                    <button type="" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+            @if (($index + 1) % 5 == 0)
+                </div><div class="d-flex flex-wrap justify-content-center gap-5">
+            @endif
+        @endforeach
+    </div>
 
 
 </body>
