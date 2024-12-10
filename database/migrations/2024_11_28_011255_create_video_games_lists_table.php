@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('ReleaseDate');
             $table->date('PlayedSince');
             $table->string('Genre');
+            $table->string('image');
 
             $table->unsignedBigInteger('Category_id');
             $table->foreign('Category_id')->references('id')->on('categories')->onDelete('cascade')-> onUpdate('cascade');

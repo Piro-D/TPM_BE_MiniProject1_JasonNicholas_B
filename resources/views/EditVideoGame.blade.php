@@ -32,13 +32,15 @@
     <h2>List a new video game</h2>
 
     <div class="p-5">
-        <h1 class="text-center">List Video Game</h1>
+        <h1 class="text-center">Edit Video Game</h1>
 
-        <form action="{{route('store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('UpdateList', $VideoGame->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PATCH')
+
             <div class="mb-3">
                 <label for="" class="form-label">Game Title</label>
-                <input value="{{old('GameTitle')}}" type="text" class="form-control" id="" name="GameTitle">
+                <input value="{{$VideoGame->GameTitle}}" type="text" class="form-control" id="" name="GameTitle">
             </div>
 
             @error('GameTitle')
@@ -49,7 +51,7 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">Developer</label>
-                <input value="{{old('Developer')}}" type="text" class="form-control" id="" name="Developer">
+                <input value="{{$VideoGame->Developer}}" type="text" class="form-control" id="" name="Developer">
             </div>
 
             @error('Developer')
@@ -60,7 +62,7 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">Release Date</label>
-                <input value="{{old('ReleaseDate')}}"type="date" class="form-control" id="" name="ReleaseDate">
+                <input value="{{$VideoGame->ReleaseDate}}"type="date" class="form-control" id="" name="ReleaseDate">
             </div>
 
             @error('ReleaseDate')
@@ -71,7 +73,7 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">Played Since</label>
-                <input value="{{old('PlayedSince')}}"type="date" class="form-control" id="" name="PlayedSince">
+                <input value="{{$VideoGame->PlayedSince}}"type="date" class="form-control" id="" name="PlayedSince">
             </div>
 
             @error('PlayedSince')
@@ -90,22 +92,22 @@
             </div>
 
             <div class="mb-3">
-                <label for="" class="form-lable">Image</label>
-                <input type="file" class="form-control" id = "" name="image">
+                <label for="" class="form-label">Genre</label>
+                <input value="{{$VideoGame->Genre}}" type="text" class="form-control" id="" name="Genre">
             </div>
 
-            @error('image')
+            @error('Genre')
                 <div class="alert alert-danger" role="alert">
                     {{$message}}
                 </div>
             @enderror
 
             <div class="mb-3">
-                <label for="" class="form-label">Genre</label>
-                <input value="" type="text" class="form-control" id="" name="Genre">
+                <label for="" class="form-lable">Image</label>
+                <input type="file" class="form-control" id = "" name="image">
             </div>
 
-            @error('Genre')
+            @error('image')
                 <div class="alert alert-danger" role="alert">
                     {{$message}}
                 </div>

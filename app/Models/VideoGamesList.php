@@ -11,7 +11,7 @@ class VideoGamesList extends Model
     use HasFactory;
 
     protected $fillable = [
-        'GameTitle', 'Developer','ReleaseDate','PlayedSince','Genre','Status', 'Category_id'
+        'GameTitle', 'Developer','ReleaseDate','PlayedSince','Genre','image', 'Status', 'Category_id'
     ];
 
     public function category(){

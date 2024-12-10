@@ -24,9 +24,9 @@ class VideoGamesListFactory extends Factory
             'ReleaseDate' => $this->faker->date(),
             'PlayedSince' => $this->faker->date(),
             'Genre' => $this->faker->word(),
+            'image' => $this->faker->image('public/storage/images', 640, 480, null, false),
             'Category_id' => Category::inRandomOrder()->first()->id,
             'Status' => $this->faker->randomElement(['Completed', 'On Hold', 'Still Playing']),
-
         ];
     }
 }

@@ -31,10 +31,16 @@
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Create">Create</a>
+                        <a class="nav-link" href="/Create">Create</a>
                     </li>
                 </ul>
             </div>
+            <form action="{{ route('logout') }}" method="POST" class="d-flex" >
+                @csrf
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
+
+            <a href="{{route('register')}}" class="btn btn-success">Register</a>
         </div>
     </nav>
 
@@ -84,8 +90,8 @@
 
     <div class="d-flex flex-wrap justify-content-center gap-5">
         @foreach ($VideoGames as $index => $VideoGame)
-            <div class="card" style="width: 18rem;">
-                {{-- <img src="{{asset('images/pngwing.com.png')}}" class="card-img-top" alt="..."> --}}
+            <div class="card" style="width: 19rem;">
+                <img src="{{asset('storage/images/'.$VideoGame->image)}}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Game Title: {{$VideoGame->GameTitle}} </h5>
                     <p class="card-text">Developer: {{$VideoGame->Developer}}</p>
@@ -94,16 +100,16 @@
                     <p class="card-text">Platform: {{$VideoGame->category->Platform}}</p>
                     <p class="card-text">Genre: {{$VideoGame->Genre}}</p>
                     <p class="card-text">Status: {{$VideoGame->Status}}</p>
-                    <a href="" class="btn btn-success">Edit</a>
-                    <button type="" class="btn btn-danger">Delete</button>
+                    <a href="{{route('edit', $VideoGame->id)}}" class="btn btn-success">Edit</a>
+
+                    <form action = "{{route('DeleteGame', $VideoGame->id)}}" method="POST">
+                        @csrf
+                        @method('delete')
+                        <button type="" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
-            @if (($index + 1) % 5 == 0)
-                </div><div class="d-flex flex-wrap justify-content-center gap-5">
-            @endif
         @endforeach
     </div>
-
-
 </body>
 </html>
